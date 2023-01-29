@@ -1,0 +1,23 @@
+version: '3'
+services:
+  redis:
+    image: "redis"
+    network_mode: "host"
+  python:
+    network_mode: "host"
+    build:
+      context: /home/akash/Desktop/projects/questionPro_assignment/backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+  react:
+    network_mode: "host"
+    build:
+      context: /home/akash/Desktop/projects/questionPro_assignment/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - redis
